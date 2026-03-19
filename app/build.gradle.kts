@@ -51,6 +51,7 @@ android {
             dimension = "environment"
             buildConfigField("String", "BASE_URL_RICK", "\"https://rickandmortyapi.com/api/\"")
             buildConfigField("String", "BASE_URL_JSON", "\"https://jsonplaceholder.typicode.com/\"")
+            buildConfigField("String", "MEAL_BASE_URL", "\"https://www.themealdb.com/\"")
             resValue("string", "app_name", "Demo (DEV)")
         }
 
@@ -58,6 +59,7 @@ android {
             dimension = "environment"
             buildConfigField("String", "BASE_URL_RICK", "\"https://rickandmortyapi.com/api/\"")
             buildConfigField("String", "BASE_URL_JSON", "\"https://jsonplaceholder.typicode.com/\"")
+            buildConfigField("String", "MEAL_BASE_URL", "\"https://www.themealdb.com/\"")
             resValue("string", "app_name", "Demo")
         }
     }

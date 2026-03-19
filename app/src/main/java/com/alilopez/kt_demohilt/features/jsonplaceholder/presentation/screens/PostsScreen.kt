@@ -8,10 +8,8 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Search
-import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -24,16 +22,20 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavController
 import com.alilopez.demo.features.jsonplaceholder.presentation.components.PostsCard
 import com.alilopez.demo.features.jsonplaceholder.presentation.viewmodels.PostsViewModel
 
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PostsScreen(viewModel : PostsViewModel = hiltViewModel()) {
+fun PostsScreen(
+    navController: NavController,
+    viewModel: PostsViewModel = hiltViewModel()
+) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     Scaffold(
         modifier = Modifier.fillMaxSize(),
@@ -41,14 +43,15 @@ fun PostsScreen(viewModel : PostsViewModel = hiltViewModel()) {
             TopAppBar(
                 title = { Text("JSON Place Holder") },
                 navigationIcon = {
-                    IconButton(onClick = {  }) {
+                    IconButton(onClick = {
+                        navController.popBackStack()
+                    }) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                             contentDescription = "Atras"
                         )
                     }
                 },
-                // Botones en el extremo derecho (puedes poner varios)
                 actions = {
                     IconButton(onClick = { /* Acción de buscar */ }) {
                         Icon(Icons.Default.Search, contentDescription = "Buscar")
@@ -97,4 +100,3 @@ fun PostsScreen(viewModel : PostsViewModel = hiltViewModel()) {
 
     }
 }
-
